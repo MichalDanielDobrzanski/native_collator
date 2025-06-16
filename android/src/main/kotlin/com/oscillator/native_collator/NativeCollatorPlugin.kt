@@ -1,4 +1,4 @@
-package com.example.native_collator
+package com.oscillator.native_collator
 
 import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin

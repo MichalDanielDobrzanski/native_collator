@@ -1,0 +1,8 @@
+# Safe to ignore for pub.dev
+build/
+.dart_tool/
+.packages
+
+# DO NOT ignore plugin source files
+# android/src/main/kotlin/...
+# test/...

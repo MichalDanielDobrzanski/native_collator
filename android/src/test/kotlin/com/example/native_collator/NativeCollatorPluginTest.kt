@@ -1,4 +1,4 @@
-package com.example.native_collator
+package com.oscillator.native_collator
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

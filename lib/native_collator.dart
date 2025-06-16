@@ -1,6 +1,17 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
 
+/// Example:
+///
+/// ```dart
+/// import 'package:native_collator/native_collator.dart';
+///
+/// void main() async {
+///   final items = ['świnia', 'szafa', 'sok', 'tata'];
+///   final sorted = await NativeCollator.sort(items, 'pl');
+///   print(sorted);
+/// }
+/// ```
 class NativeCollator {
   static const MethodChannel _channel = MethodChannel('native_collator');
 
