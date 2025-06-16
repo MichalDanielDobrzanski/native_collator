@@ -1,61 +1,61 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:native_collator/native_collator.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final polishOriginal = ['świnia', 'szafa', 'sok', 'tata'];
+  final polishSorted = await NativeCollator.sort(polishOriginal, 'pl');
+
+  final germanOriginal = ['Äpfel', 'Apfel', 'Öl', 'Zucker', 'Über'];
+  final germanSorted = await NativeCollator.sort(germanOriginal, 'de');
+
+  runApp(
+    MyApp(
+      polishOriginal: polishOriginal,
+      polishSorted: polishSorted,
+      germanOriginal: germanOriginal,
+      germanSorted: germanSorted,
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  final List<String> polishOriginal;
+  final List<String> polishSorted;
+  final List<String> germanOriginal;
+  final List<String> germanSorted;
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _nativeCollatorPlugin = NativeCollator();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _nativeCollatorPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
+  const MyApp({
+    super.key,
+    required this.polishOriginal,
+    required this.polishSorted,
+    required this.germanOriginal,
+    required this.germanSorted,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        appBar: AppBar(title: const Text('Native Collator Example')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            children: [
+              const Text('Original Polish List:'),
+              Text(polishOriginal.join(', ')),
+              const SizedBox(height: 12),
+              const Text('Sorted Polish List:'),
+              Text(polishSorted.join(', ')),
+              const Divider(height: 32),
+              const Text('Original German List:'),
+              Text(germanOriginal.join(', ')),
+              const SizedBox(height: 12),
+              const Text('Sorted German List:'),
+              Text(germanSorted.join(', ')),
+            ],
+          ),
         ),
       ),
     );
