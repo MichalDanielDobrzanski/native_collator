@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Updated README.md with links.
+
 ## 1.0.1
 
 - Updated README.md with status badges.
