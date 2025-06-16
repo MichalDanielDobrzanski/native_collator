@@ -2,6 +2,13 @@
 
 Locale-aware string sorting via native ICU collation on Android and iOS.
 
+[![pub package](https://img.shields.io/pub/v/native_collator.svg)](https://pub.dev/packages/native_collator)
+[![platform support](https://img.shields.io/badge/platforms-android%20%7C%20ios-blue)](#)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+[![GitHub Repo stars](https://img.shields.io/github/stars/yourusername/native_collator?style=social)](https://github.com/yourusername/native_collator)
+[![Last Commit](https://img.shields.io/github/last-commit/yourusername/native_collator)](https://github.com/yourusername/native_collator/commits/main)
+
 ## Features
 - Accurate locale-specific sorting (e.g. Polish: "s" < "ś" < "t")
 - Native bindings using `Collator` on Android and `String.compare(_:locale:)` on iOS
